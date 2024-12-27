@@ -1,7 +1,7 @@
 require 'nokogiri'
 require 'open-uri'
 
-url='https://www.amazon.pl/s?k=iphone&rh=n%3A20788252031&__mk_pl_PL=ÅMÅŽÕÑ&ref=nb_sb_noss'
+url="https://www.amazon.pl/s?k=#{ARGV[0]}"
 uri = URI.parse(URI::Parser.new.escape(url))
 
 doc = Nokogiri::HTML(URI.open(uri))
