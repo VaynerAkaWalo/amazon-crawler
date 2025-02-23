@@ -6,10 +6,10 @@ uri = URI.parse(URI::Parser.new.escape(url))
 
 doc = Nokogiri::HTML(URI.open(uri))
 
-doc.css('[data-component-type="s-search-result"]').each do |result|
-  product = result.at_css('a > h2 > span')&.text
+doc.xpath('//div[@role="listitem" and @data-component-type="s-search-result"]').each do |result|
+  product = result.at_xpath('.//h2/span')&.text
 
-  price = result.at_css('.a-offscreen')&.text
+  price = result.at_xpath('.//span[@class="a-price"]/span')&.text
 
   puts "Product: #{product}, price #{price}"
 end
